@@ -24,23 +24,43 @@ define(['jquery', 'bootstrap', 'backend', 'table', 'form'], function ($, undefin
                 columns: [
                     [
                         {checkbox: true},
-                        {field: 'id', title: __('Id')},
-                        {field: 'display_id', title: __('Display_id')},
-                        {field: 'short_id', title: __('Short_id')},
-                        {field: 'room_id', title: __('Room_id')},
-                        {field: 'nickname', title: __('Nickname')},
-                        {field: 'rank', title: __('Rank')},
-                        {field: 'score', title: __('Score')},
-                        {field: 'avatar_thumb', title: __('Avatar_thumb'), formatter: Table.api.formatter.image},
-                        {field: 'icon_level', title: __('Icon_level'), formatter: Table.api.formatter.image},
+                        {field: 'display_id', title: __('Display_id'), sortable:true},
+                        {field: 'short_id', title: __('Short_id'), sortable:true},
+                        {field: 'room_id', title: __('Room_id'), sortable:true},
+                        {field: 'nickname', title: __('Nickname'), sortable:true},
+                        {field: 'rank', title: __('Rank'), sortable:true},
+                        {field: 'score', title: __('Score'), sortable:true},
+                        {field: 'avatar_thumb', title: __('Avatar_thumb'), formatter: function (value, row, index) {
+                            return '<a href="' + value + '" target="_blank"><img src="' + value + '" height="30" /></a>';
+                        }},
+                        {field: 'icon_level', title: __('Icon_level'), formatter: Table.api.formatter.image, sortable:true},
                         {field: 'remark', title: __('Remark')},
-                        {field: 'state', title: __('State'), searchList: {"1":__('State 1'),"0":__('State 0')}, formatter: Table.api.formatter.normal},
-                        {field: 'ranktime', title: __('Ranktime'), operate:'RANGE', addclass:'datetimerange', formatter: Table.api.formatter.datetime},
+                        {field: 'state', title: __('State'), searchList: {"1":__('State 1'),"0":__('State 0')}, formatter: Table.api.formatter.normal, sortable:true},
+                        {field: 'ranktime', title: __('Ranktime'), operate:'RANGE', addclass:'datetimerange', formatter: Table.api.formatter.datetime, sortable:true},
                         // {field: 'createtime', title: __('Createtime'), operate:'RANGE', addclass:'datetimerange', formatter: Table.api.formatter.datetime},
                         // {field: 'updatetime', title: __('Updatetime'), operate:'RANGE', addclass:'datetimerange', formatter: Table.api.formatter.datetime},
                         {field: 'operate', title: __('Operate'), table: table, events: Table.api.events.operate, formatter: Table.api.formatter.operate}
                     ]
-                ]
+                ],
+                //普通搜索
+                commonSearch: false,
+                showToggle: false,
+                showColumns: false,
+                pageList: [15, 50, 100, 'All'],
+                pageSize: 15,
+                queryParams: function(){
+                    var params = {};
+                    var options = $('#table').bootstrapTable('getOptions');
+
+                    params['limit'] = options.pageSize? options.pageSize: 15;
+                    params['offset'] = options.pageNumber? (options.pageNumber-1) * options.pageSize: 0;
+                    params['search'] = options.searchText? options.searchText: '';
+                    params['sort'] = options.sortName? options.sortName: 'createtime';
+                    params['order'] = options.sortOrder? options.sortOrder: 'desc';
+                    return params;
+                },
+                exportTypes: ['excel'],
+                undefinedText: '',
             });
 
             // 为表格绑定事件

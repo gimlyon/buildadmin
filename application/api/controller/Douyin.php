@@ -49,18 +49,21 @@ class Douyin extends Api
 
             $ranks = [];
             foreach ($result['data']['ranks'] as $key => $row) {
-                $data = [];
                 if(isset($row['user'])){
-                    $data['rank'] = $row['rank'];
-                    $data['score'] = $row['score'];
-                    $data['avatar_thumb'] = $row['user']['avatar_thumb']['url_list'][0];
-                    $data['display_id'] = $row['user']['display_id'];
-                    $data['nickname'] = $row['user']['nickname'];
-                    isset($row['user']['pay_grade']['new_im_icon_with_level']['url_list'][0])? $data['icon_level'] = $row['user']['pay_grade']['new_im_icon_with_level']['url_list'][0]: '';
-                    $data['short_id'] = $row['user']['short_id'];
-                    $data['room_id'] = $params['room_id'];
-                    $data['ranktime'] = $ranktime;
-                    $ranks[] = $data;
+                    $latest_data = $this->model->where('short_id', $row['user']['short_id'])->where('room_id', $params['room_id'])->where('ranktime', 'between', [$ranktime-3600, $ranktime])->value('id');
+                    if(!$latest_data){
+                        $data = [];
+                        $data['rank'] = $row['rank'];
+                        $data['score'] = $row['score'];
+                        $data['avatar_thumb'] = $row['user']['avatar_thumb']['url_list'][0];
+                        $data['display_id'] = $row['user']['display_id'];
+                        $data['nickname'] = $row['user']['nickname'];
+                        isset($row['user']['pay_grade']['new_im_icon_with_level']['url_list'][0])? $data['icon_level'] = $row['user']['pay_grade']['new_im_icon_with_level']['url_list'][0]: '';
+                        $data['short_id'] = $row['user']['short_id'];
+                        $data['room_id'] = $params['room_id'];
+                        $data['ranktime'] = $ranktime;
+                        $ranks[] = $data;
+                    }
                 }
 
             }
