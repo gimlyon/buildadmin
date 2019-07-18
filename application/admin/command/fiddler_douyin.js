@@ -268,7 +268,7 @@ class Handlers
     static function OnBeforeResponse(oSession: Session) {
 		if(oSession.fullUrl.Contains('ranklist/room')){
 			var _xhr = new ActiveXObject('Microsoft.XMLHTTP');
-			var url = 'http://fastadmin/api/index/get_json';
+			var url = 'http://buildadmin/api/index/get_json';
 			
 			var responseStr = oSession.GetResponseBodyAsString();
 			var roomBegin = oSession.fullUrl.IndexOf('room/');
