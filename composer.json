@@ -3,10 +3,10 @@
     "description": "the fastest admin framework",
     "type": "project",
     "keywords": [
-        "fastadmin",
+        "buildadmin",
         "thinkphp"
     ],
-    "homepage": "https://www.fastadmin.net/",
+    "homepage": "https://#",
     "license": "Apache-2.0",
     "authors": [
         {

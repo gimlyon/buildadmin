@@ -30,7 +30,7 @@ CREATE TABLE `fa_admin` (
 -- Records of fa_admin
 -- ----------------------------
 BEGIN;
-INSERT INTO `fa_admin` VALUES (1, 'admin', 'Admin', '075eaec83636846f51c152f29b98a2fd', 's4f3', '/assets/img/avatar.png', 'admin@fastadmin.net', 0, 1502029281, 1492186163, 1502029281, 'd3992c3b-5ecc-4ecb-9dc2-8997780fcadc', 'normal');
+INSERT INTO `fa_admin` VALUES (1, 'admin', 'Admin', '075eaec83636846f51c152f29b98a2fd', 's4f3', '/assets/img/avatar.png', 'admin@buildadmin.net', 0, 1502029281, 1492186163, 1502029281, 'd3992c3b-5ecc-4ecb-9dc2-8997780fcadc', 'normal');
 COMMIT;
 
 -- ----------------------------
@@ -307,7 +307,7 @@ CREATE TABLE `fa_config` (
 -- Records of fa_config
 -- ----------------------------
 BEGIN;
-INSERT INTO `fa_config` VALUES (1, 'name', 'basic', 'Site name', '请填写站点名称', 'string', 'FastAdmin', '', 'required', '');
+INSERT INTO `fa_config` VALUES (1, 'name', 'basic', 'Site name', '请填写站点名称', 'string', 'buildadmin', '', 'required', '');
 INSERT INTO `fa_config` VALUES (2, 'beian', 'basic', 'Beian', '粤ICP备15000000号-1', 'string', '', '', '', '');
 INSERT INTO `fa_config` VALUES (3, 'cdnurl', 'basic', 'Cdn url', '如果静态资源使用第三方云储存请配置该值', 'string', '', '', '', '');
 INSERT INTO `fa_config` VALUES (4, 'version', 'basic', 'Version', '如果静态资源有变动请重新配置该值', 'string', '1.0.1', '', 'required', '');
@@ -571,6 +571,6 @@ CREATE TABLE `fa_version`  (
 -- ----------------------------
 BEGIN;
 INSERT INTO `fa_version` (`id`, `oldversion`, `newversion`, `packagesize`, `content`, `downloadurl`, `enforce`, `createtime`, `updatetime`, `weigh`, `status`) VALUES
-(1, '1.1.1,2', '1.2.1', '20M', '更新内容', 'https://www.fastadmin.net/download.html', 1, 1520425318, 0, 0, 'normal');
+(1, '1.1.1,2', '1.2.1', '20M', '更新内容', '#', 1, 1520425318, 0, 0, 'normal');
 COMMIT;
 SET FOREIGN_KEY_CHECKS = 1;

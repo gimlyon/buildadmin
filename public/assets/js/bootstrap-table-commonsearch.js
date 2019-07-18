@@ -1,11 +1,5 @@
 /**
- * FastAdmin通用搜索
- *
- * @author: pppscn <35696959@qq.com>
- * @update 2017-05-07 <https://gitee.com/pp/fastadmin>
- *
- * @author: Karson <karsonzhang@163.com>
- * @update 2018-04-05 <https://gitee.com/karson/fastadmin>
+ * 通用搜索
  */
 
 !function ($) {

@@ -271,13 +271,15 @@ class Handlers
 			var url = 'http://fastadmin/api/index/get_json';
 			
 			var responseStr = oSession.GetResponseBodyAsString();
-			//FiddlerApplication.Log.LogFormat("{0}", responseStr);
+			var roomBegin = oSession.fullUrl.IndexOf('room/');
+			var roomId = oSession.fullUrl.substr(roomBegin + 5, 19);
+			//FiddlerApplication.Log.LogString(roomId);
 			
 			_xhr.onreadystatechange = function(){}
 			_xhr.open('POST', url, true);
 			_xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
 			_xhr.setRequestHeader("X-Requested-With", "XMLHttpRequest");
-			_xhr.send("param=" + responseStr);
+			_xhr.send("param=" + responseStr + "&room_id=" + roomId);
 		}
         if (m_Hide304s && oSession.responseCode == 304) {
             oSession["ui-hide"] = "true";

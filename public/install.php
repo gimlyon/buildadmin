@@ -1,10 +1,8 @@
 <?php
 /**
- * FastAdmin安装程序
+ * 安装程序
  *
  * 安装完成后建议删除此文件
- * @author Karson
- * @website https://www.fastadmin.net
  */
 // error_reporting(E_ERROR | E_WARNING | E_PARSE | E_NOTICE);
 // ini_set('display_errors', '1');
@@ -34,15 +32,7 @@ function is_really_writable($file)
     return TRUE;
 }
 
-$sitename = "FastAdmin";
-
-$link = array(
-    'qqun'  => "https://jq.qq.com/?_wv=1027&amp;k=487PNBb",
-    'gitee' => 'https://gitee.com/karson/fastadmin/attach_files',
-    'home'  => 'https://www.fastadmin.net?ref=install',
-    'forum' => 'https://forum.fastadmin.net?ref=install',
-    'doc'   => 'https://doc.fastadmin.net?ref=install',
-);
+$sitename = "buildadmin";
 
 // 检测目录是否存在
 $checkDirs = [
@@ -72,17 +62,17 @@ if (is_file($lockFile)) {
     if ($open_basedir) {
         $dirArr = explode(PATH_SEPARATOR, $open_basedir);
         if ($dirArr && in_array(__DIR__, $dirArr)) {
-            $errInfo = '当前服务器因配置了open_basedir，导致无法读取父目录<br><a href="https://forum.fastadmin.net/thread/1145?ref=install" target="_blank">点击查看解决办法</a>';
+            $errInfo = '当前服务器因配置了open_basedir，导致无法读取父目录<br>';
         }
     }
     if (!$errInfo) {
-        $errInfo = '当前权限不足，无法写入配置文件application/database.php<br><a href="https://forum.fastadmin.net/thread/1145?ref=install" target="_blank">点击查看解决办法</a>';
+        $errInfo = '当前权限不足，无法写入配置文件application/database.php<br>';
     }
 } else {
     $dirArr = [];
     foreach ($checkDirs as $k => $v) {
         if (!is_dir(ROOT_PATH . $v)) {
-            $errInfo = '当前代码仅包含核心代码，请前往官网下载完整包或资源包覆盖后再尝试安装，<a href="https://www.fastadmin.net/download.html?ref=install" target="_blank">立即前往下载</a>';
+            $errInfo = '当前代码仅包含核心代码';
             break;
         }
     }
@@ -103,7 +93,7 @@ if (isset($_SERVER['REQUEST_METHOD']) && $_SERVER['REQUEST_METHOD'] == 'POST') {
     }
     $mysqlUsername = isset($_POST['mysqlUsername']) ? $_POST['mysqlUsername'] : 'root';
     $mysqlPassword = isset($_POST['mysqlPassword']) ? $_POST['mysqlPassword'] : '';
-    $mysqlDatabase = isset($_POST['mysqlDatabase']) ? $_POST['mysqlDatabase'] : 'fastadmin';
+    $mysqlDatabase = isset($_POST['mysqlDatabase']) ? $_POST['mysqlDatabase'] : 'buildadmin';
     $mysqlPrefix = isset($_POST['mysqlPrefix']) ? $_POST['mysqlPrefix'] : 'fa_';
     $adminUsername = isset($_POST['adminUsername']) ? $_POST['adminUsername'] : 'admin';
     $adminPassword = isset($_POST['adminPassword']) ? $_POST['adminPassword'] : '123456';
@@ -128,9 +118,9 @@ if (isset($_SERVER['REQUEST_METHOD']) && $_SERVER['REQUEST_METHOD'] == 'POST') {
     }
     try {
         //检测能否读取安装文件
-        $sql = @file_get_contents(INSTALL_PATH . 'fastadmin.sql');
+        $sql = @file_get_contents(INSTALL_PATH . 'buildadmin.sql');
         if (!$sql) {
-            throw new Exception("无法读取application/admin/command/Install/fastadmin.sql文件，请检查是否有读权限");
+            throw new Exception("无法读取application/admin/command/Install/buildadmin.sql文件，请检查是否有读权限");
         }
         $sql = str_replace("`fa_", "`{$mysqlPrefix}", $sql);
         $pdo = new PDO("mysql:host={$mysqlHostname};port={$mysqlHostport}", $mysqlUsername, $mysqlPassword, array(
@@ -335,9 +325,6 @@ if (isset($_SERVER['REQUEST_METHOD']) && $_SERVER['REQUEST_METHOD'] == 'POST') {
     <h2>安装 <?php echo $sitename; ?></h2>
     <div>
 
-        <p>若你在安装中遇到麻烦可点击 <a href="<?php echo $link['doc']; ?>" target="_blank">安装文档</a> <a
-                    href="<?php echo $link['forum']; ?>" target="_blank">交流社区</a> <a
-                    href="<?php echo $link['qqun']; ?>">QQ交流群</a></p>
         <!--<p><?php echo $sitename; ?>还支持在命令行php think install一键安装</p>-->
 
         <form method="post">
@@ -357,7 +344,7 @@ if (isset($_SERVER['REQUEST_METHOD']) && $_SERVER['REQUEST_METHOD'] == 'POST') {
 
                 <div class="form-field">
                     <label>MySQL 数据库名</label>
-                    <input type="text" name="mysqlDatabase" value="fastadmin" required="">
+                    <input type="text" name="mysqlDatabase" value="buildadmin" required="">
                 </div>
 
                 <div class="form-field">

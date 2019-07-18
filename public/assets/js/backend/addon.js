@@ -195,7 +195,7 @@ define(['jquery', 'bootstrap', 'backend', 'table', 'form', 'template'], function
                         content: Template("logintpl", {}),
                         zIndex: 99,
                         area: ['430px', '350px'],
-                        title: __('Login FastAdmin'),
+                        title: __('Login buildadmin'),
                         resize: false,
                         btn: [__('Login'), __('Register')],
                         yes: function (index, layero) {

@@ -255,7 +255,7 @@ return [
         // 缓存有效期 0表示永久缓存
         'expire'   => 0,
     ],
-    //FastAdmin配置
+    //buildadmin配置
     'fastadmin'              => [
         //是否开启前台会员中心
         'usercenter'          => true,
