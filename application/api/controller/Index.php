@@ -20,17 +20,4 @@ class Index extends Api
     {
         $this->success('请求成功');
     }
-
-    /**
-     * 首页
-     *
-     */
-    public function get_json()
-    {
-        $params = $this->request->post();
-        $result = $params['param'];
-        $result = htmlspecialchars_decode($result);
-        $result = json_decode($result, true);
-        trace($result, 'warning');
-    }
 }

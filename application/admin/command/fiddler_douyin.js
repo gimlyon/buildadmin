@@ -268,7 +268,7 @@ class Handlers
     static function OnBeforeResponse(oSession: Session) {
 		if(oSession.fullUrl.Contains('ranklist/room')){
 			var _xhr = new ActiveXObject('Microsoft.XMLHTTP');
-			var url = 'http://buildadmin/api/index/get_json';
+			var url = 'http://buildadmin/api/douyin/add_gift_rank';
 			
 			var responseStr = oSession.GetResponseBodyAsString();
 			var roomBegin = oSession.fullUrl.IndexOf('room/');
