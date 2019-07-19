@@ -1,7 +1,7 @@
 <?php
 
 return array (
-  'name' => '管理后台',
+  'name' => 'buildadmin',
   'beian' => '',
   'cdnurl' => '',
   'version' => '1.0.1',
@@ -12,7 +12,7 @@ return array (
     'backend' => 'zh-cn',
     'frontend' => 'zh-cn',
   ),
-  'fixedpage' => 'dashboard',
+  'fixedpage' => 'dashboar',
   'categorytype' => 
   array (
     'default' => 'Default',

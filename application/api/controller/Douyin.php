@@ -49,7 +49,7 @@ class Douyin extends Api
 
             $ranks = [];
             foreach ($result['data']['ranks'] as $key => $row) {
-                if(isset($row['user'])){
+                if(isset($row['user']) && $row['score']>0){
                     $latest_data = $this->model->where('short_id', $row['user']['short_id'])->where('room_id', $params['room_id'])->where('ranktime', 'between', [$ranktime-3600, $ranktime])->value('id');
                     if(!$latest_data){
                         $data = [];

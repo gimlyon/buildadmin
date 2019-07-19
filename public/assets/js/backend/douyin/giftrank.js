@@ -1,5 +1,9 @@
 define(['jquery', 'bootstrap', 'backend', 'table', 'form'], function ($, undefined, Backend, Table, Form) {
 
+    $('#ok').click(function () {
+        $("#table").bootstrapTable('refresh');
+    });
+
     var Controller = {
         index: function () {
             // 初始化表格参数配置
@@ -35,7 +39,7 @@ define(['jquery', 'bootstrap', 'backend', 'table', 'form'], function ($, undefin
                         }},
                         {field: 'icon_level', title: __('Icon_level'), formatter: Table.api.formatter.image, sortable:true},
                         {field: 'remark', title: __('Remark')},
-                        {field: 'state', title: __('State'), searchList: {"1":__('State 1'),"0":__('State 0')}, formatter: Table.api.formatter.normal, sortable:true},
+                        {field: 'state', title: __('State'), searchList: {"1":__('State 1'),"2":__('State 2')}, formatter: Table.api.formatter.normal, sortable:true},
                         {field: 'ranktime', title: __('Ranktime'), operate:'RANGE', addclass:'datetimerange', formatter: Table.api.formatter.datetime, sortable:true},
                         // {field: 'createtime', title: __('Createtime'), operate:'RANGE', addclass:'datetimerange', formatter: Table.api.formatter.datetime},
                         // {field: 'updatetime', title: __('Updatetime'), operate:'RANGE', addclass:'datetimerange', formatter: Table.api.formatter.datetime},
@@ -45,7 +49,7 @@ define(['jquery', 'bootstrap', 'backend', 'table', 'form'], function ($, undefin
                 //普通搜索
                 commonSearch: false,
                 showToggle: false,
-                showColumns: false,
+                // showColumns: false,
                 pageList: [15, 50, 100, 'All'],
                 pageSize: 15,
                 queryParams: function(){
@@ -53,10 +57,13 @@ define(['jquery', 'bootstrap', 'backend', 'table', 'form'], function ($, undefin
                     var options = $('#table').bootstrapTable('getOptions');
 
                     params['limit'] = options.pageSize? options.pageSize: 15;
-                    params['offset'] = options.pageNumber? (options.pageNumber-1) * options.pageSize: 0;
+                    params['offset'] = !isNaN(options.pageSize) && options.pageNumber? (options.pageNumber-1) * options.pageSize: 0;
                     params['search'] = options.searchText? options.searchText: '';
                     params['sort'] = options.sortName? options.sortName: 'createtime';
                     params['order'] = options.sortOrder? options.sortOrder: 'desc';
+                    params['state'] = $("#state").val();
+                    params['begin_time'] = $("#begin_time").val();
+                    params['end_time'] = $("#end_time").val();
                     return params;
                 },
                 exportTypes: ['excel'],
@@ -65,6 +72,10 @@ define(['jquery', 'bootstrap', 'backend', 'table', 'form'], function ($, undefin
 
             // 为表格绑定事件
             Table.api.bindevent(table);
+            
+            Controller.api.bindevent();
+            // 修改搜索框提示文字
+            $('.search input').attr('placeholder', '抖音号/直播间ID/昵称');
         },
         add: function () {
             Controller.api.bindevent();

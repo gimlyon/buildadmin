@@ -18,6 +18,8 @@ class Giftrank extends Backend
      */
     protected $model = null;
 
+    protected $searchFields = 'display_id,room_id,nickname';
+
     public function _initialize()
     {
         parent::_initialize();
@@ -26,10 +28,45 @@ class Giftrank extends Backend
     }
     
     /**
-     * 默认生成的控制器所继承的父类中有index/add/edit/del/multi五个基础方法、destroy/restore/recyclebin三个回收站方法
-     * 因此在当前控制器中可不用编写增删改查的代码,除非需要自己控制这部分逻辑
-     * 需要将application/admin/library/traits/Backend.php中对应的方法复制到当前控制器,然后进行修改
+     * 查看
      */
-    
+    public function index()
+    {
+        //设置过滤方法
+        $this->request->filter(['strip_tags']);
+        if ($this->request->isAjax()) {
+            list($where, $sort, $order, $offset, $limit) = $this->buildparams();
 
+            $filter_where = [];
+            // 按状态筛选
+            $state = $this->request->param('state');
+            !empty($state)? $filter_where['state'] = $state: '';
+            // 按榜单时间筛选
+            $begin_time = $this->request->param('begin_time');
+            $end_time = $this->request->param('end_time');
+            !empty($begin_time) && !empty($end_time)? $filter_where['ranktime'] = ['between time', [$begin_time, $end_time.':59']]: '';
+
+            $total = $this->model
+                ->where($where)
+                ->where($filter_where)
+                ->order($sort, $order)
+                ->count();
+
+            $limit == 'All'? $limit = $total: '';
+
+            $list = $this->model
+                ->where($where)
+                ->where($filter_where)
+                ->order($sort, $order)
+                ->limit($offset, $limit)
+                ->select();
+
+            $list = collection($list)->toArray();
+            $result = array("total" => $total, "rows" => $list);
+
+            return json($result);
+        }
+        return $this->view->fetch();
+    }
+    
 }

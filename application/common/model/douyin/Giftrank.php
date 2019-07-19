@@ -33,7 +33,7 @@ class Giftrank extends Model
     
     public function getStateList()
     {
-        return ['1' => __('State 1'), '0' => __('State 0')];
+        return ['1' => __('State 1'), '2' => __('State 2')];
     }
 
 
