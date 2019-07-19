@@ -6,7 +6,7 @@ return [
     'Short_id'     => '抖音ID',
     'Room_id'     => '直播间ID',
     'Nickname'     => '昵称',
-    'Rank'         => '小时排行',
+    'Rank'         => '排行',
     'Score'        => '音浪',
     'Avatar_thumb' => '头像',
     'Icon_level'   => '等级图',

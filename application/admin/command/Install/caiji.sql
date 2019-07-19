@@ -1,18 +1,18 @@
 CREATE TABLE `ba_douyin_gift_rank` (
   `id` int(10) unsigned NOT NULL AUTO_INCREMENT COMMENT 'ID',
   `display_id` varchar(50) DEFAULT NULL COMMENT '抖音号',
-  `short_id` int(10) unsigned NULL COMMENT '抖音ID',
-  `room_id` int(10) unsigned NULL COMMENT '直播间ID',
+  `short_id` bigint(30) unsigned DEFAULT NULL COMMENT '抖音ID',
+  `room_id` bigint(30) unsigned DEFAULT NULL COMMENT '直播间ID',
   `nickname` varchar(100) DEFAULT NULL COMMENT '昵称',
-  `rank` int(10) unsigned NULL COMMENT '小时排行',
-  `score` int(10) unsigned NULL COMMENT '音浪',
+  `rank` int(10) unsigned DEFAULT NULL COMMENT '排行',
+  `score` int(10) unsigned DEFAULT NULL COMMENT '音浪',
   `avatar_thumb` varchar(100) NOT NULL DEFAULT '' COMMENT '头像',
   `icon_level` varchar(100) NOT NULL DEFAULT '' COMMENT '等级图',
   `remark` varchar(255) DEFAULT NULL COMMENT '备注',
-  `state` enum('1','0') NOT NULL DEFAULT '1' COMMENT '状态:1=正常,0=删除',
-  `ranktime` int(10) unsigned NULL COMMENT '榜单时间',
-  `createtime` int(10) unsigned NULL COMMENT '创建时间',
-  `updatetime` int(10) unsigned NULL COMMENT '更新时间',
+  `state` enum('1','2') NOT NULL DEFAULT '1' COMMENT '状态:1=显示,2=隐藏',
+  `ranktime` int(10) unsigned DEFAULT NULL COMMENT '榜单时间',
+  `createtime` int(10) unsigned DEFAULT NULL COMMENT '创建时间',
+  `updatetime` int(10) unsigned DEFAULT NULL COMMENT '更新时间',
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 ROW_FORMAT=COMPACT COMMENT='抖音礼物榜表';
 
