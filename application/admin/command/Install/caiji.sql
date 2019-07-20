@@ -5,7 +5,7 @@ CREATE TABLE `ba_douyin_gift_rank` (
   `room_id` bigint(30) unsigned DEFAULT NULL COMMENT '直播间ID',
   `nickname` varchar(100) DEFAULT NULL COMMENT '昵称',
   `rank` int(10) unsigned DEFAULT NULL COMMENT '排行',
-  `score` int(10) unsigned DEFAULT NULL COMMENT '音浪',
+  `score` bigint(20) unsigned DEFAULT NULL COMMENT '音浪',
   `avatar_thumb` varchar(100) NOT NULL DEFAULT '' COMMENT '头像',
   `icon_level` varchar(100) NOT NULL DEFAULT '' COMMENT '等级图',
   `remark` varchar(255) DEFAULT NULL COMMENT '备注',
@@ -15,6 +15,127 @@ CREATE TABLE `ba_douyin_gift_rank` (
   `updatetime` int(10) unsigned DEFAULT NULL COMMENT '更新时间',
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 ROW_FORMAT=COMPACT COMMENT='抖音礼物榜表';
+
+CREATE TABLE `ba_huoshan_single_rank` (
+  `id` int(10) unsigned NOT NULL AUTO_INCREMENT COMMENT 'ID',
+  `display_id` varchar(50) DEFAULT NULL COMMENT '火山号',
+  `short_id` bigint(30) unsigned DEFAULT NULL COMMENT '火山ID',
+  `room_id` bigint(30) unsigned DEFAULT NULL COMMENT '直播间ID',
+  `nickname` varchar(100) DEFAULT NULL COMMENT '昵称',
+  `rank` int(10) unsigned DEFAULT NULL COMMENT '本场排行',
+  `score` bigint(20) unsigned DEFAULT NULL COMMENT '火力',
+  `avatar_thumb` varchar(255) NOT NULL DEFAULT '' COMMENT '头像',
+  `level` int(10) unsigned DEFAULT NULL COMMENT '等级',
+  `remark` varchar(255) DEFAULT NULL COMMENT '备注',
+  `state` enum('1','2') NOT NULL DEFAULT '1' COMMENT '状态:1=显示,2=隐藏',
+  `ranktime` int(10) unsigned DEFAULT NULL COMMENT '榜单时间',
+  `createtime` int(10) unsigned DEFAULT NULL COMMENT '创建时间',
+  `updatetime` int(10) unsigned DEFAULT NULL COMMENT '更新时间',
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 ROW_FORMAT=COMPACT COMMENT='火山本场榜表';
+
+CREATE TABLE `ba_huoshan_week_rank` (
+  `id` int(10) unsigned NOT NULL AUTO_INCREMENT COMMENT 'ID',
+  `display_id` varchar(50) DEFAULT NULL COMMENT '火山号',
+  `short_id` bigint(30) unsigned DEFAULT NULL COMMENT '火山ID',
+  `room_id` bigint(30) unsigned DEFAULT NULL COMMENT '直播间ID',
+  `nickname` varchar(100) DEFAULT NULL COMMENT '昵称',
+  `rank` int(10) unsigned DEFAULT NULL COMMENT '周排行',
+  `score` bigint(20) unsigned DEFAULT NULL COMMENT '火力',
+  `avatar_thumb` varchar(255) NOT NULL DEFAULT '' COMMENT '头像',
+  `level` int(10) unsigned DEFAULT NULL COMMENT '等级',
+  `remark` varchar(255) DEFAULT NULL COMMENT '备注',
+  `state` enum('1','2') NOT NULL DEFAULT '1' COMMENT '状态:1=显示,2=隐藏',
+  `ranktime` int(10) unsigned DEFAULT NULL COMMENT '榜单时间',
+  `createtime` int(10) unsigned DEFAULT NULL COMMENT '创建时间',
+  `updatetime` int(10) unsigned DEFAULT NULL COMMENT '更新时间',
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 ROW_FORMAT=COMPACT COMMENT='火山周榜表';
+
+CREATE TABLE `ba_huoshan_total_rank` (
+  `id` int(10) unsigned NOT NULL AUTO_INCREMENT COMMENT 'ID',
+  `display_id` varchar(50) DEFAULT NULL COMMENT '火山号',
+  `short_id` bigint(30) unsigned DEFAULT NULL COMMENT '火山ID',
+  `room_id` bigint(30) unsigned DEFAULT NULL COMMENT '直播间ID',
+  `nickname` varchar(100) DEFAULT NULL COMMENT '昵称',
+  `rank` int(10) unsigned DEFAULT NULL COMMENT '总排行',
+  `score` bigint(20) unsigned DEFAULT NULL COMMENT '火力',
+  `avatar_thumb` varchar(255) NOT NULL DEFAULT '' COMMENT '头像',
+  `level` int(10) unsigned DEFAULT NULL COMMENT '等级',
+  `remark` varchar(255) DEFAULT NULL COMMENT '备注',
+  `state` enum('1','2') NOT NULL DEFAULT '1' COMMENT '状态:1=显示,2=隐藏',
+  `ranktime` int(10) unsigned DEFAULT NULL COMMENT '榜单时间',
+  `createtime` int(10) unsigned DEFAULT NULL COMMENT '创建时间',
+  `updatetime` int(10) unsigned DEFAULT NULL COMMENT '更新时间',
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 ROW_FORMAT=COMPACT COMMENT='火山总榜表';
+
+CREATE TABLE `ba_xigua_single_rank` (
+  `id` int(10) unsigned NOT NULL AUTO_INCREMENT COMMENT 'ID',
+  `room_id` bigint(30) unsigned DEFAULT NULL COMMENT '直播间ID',
+  `nickname` varchar(100) DEFAULT NULL COMMENT '昵称',
+  `rank` int(10) unsigned DEFAULT NULL COMMENT '本场排行',
+  `score` bigint(20) unsigned DEFAULT NULL COMMENT '钻石',
+  `avatar_thumb` varchar(255) NOT NULL DEFAULT '' COMMENT '头像',
+  `level` int(10) unsigned DEFAULT NULL COMMENT '等级',
+  `remark` varchar(255) DEFAULT NULL COMMENT '备注',
+  `state` enum('1','2') NOT NULL DEFAULT '1' COMMENT '状态:1=显示,2=隐藏',
+  `ranktime` int(10) unsigned DEFAULT NULL COMMENT '榜单时间',
+  `createtime` int(10) unsigned DEFAULT NULL COMMENT '创建时间',
+  `updatetime` int(10) unsigned DEFAULT NULL COMMENT '更新时间',
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 ROW_FORMAT=COMPACT COMMENT='西瓜本场榜表';
+
+CREATE TABLE `ba_xigua_week_rank` (
+  `id` int(10) unsigned NOT NULL AUTO_INCREMENT COMMENT 'ID',
+  `room_id` bigint(30) unsigned DEFAULT NULL COMMENT '直播间ID',
+  `nickname` varchar(100) DEFAULT NULL COMMENT '昵称',
+  `rank` int(10) unsigned DEFAULT NULL COMMENT '周排行',
+  `score` bigint(20) unsigned DEFAULT NULL COMMENT '钻石',
+  `avatar_thumb` varchar(255) NOT NULL DEFAULT '' COMMENT '头像',
+  `level` int(10) unsigned DEFAULT NULL COMMENT '等级',
+  `remark` varchar(255) DEFAULT NULL COMMENT '备注',
+  `state` enum('1','2') NOT NULL DEFAULT '1' COMMENT '状态:1=显示,2=隐藏',
+  `ranktime` int(10) unsigned DEFAULT NULL COMMENT '榜单时间',
+  `createtime` int(10) unsigned DEFAULT NULL COMMENT '创建时间',
+  `updatetime` int(10) unsigned DEFAULT NULL COMMENT '更新时间',
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 ROW_FORMAT=COMPACT COMMENT='西瓜周榜表';
+
+CREATE TABLE `ba_xigua_total_rank` (
+  `id` int(10) unsigned NOT NULL AUTO_INCREMENT COMMENT 'ID',
+  `room_id` bigint(30) unsigned DEFAULT NULL COMMENT '直播间ID',
+  `nickname` varchar(100) DEFAULT NULL COMMENT '昵称',
+  `rank` int(10) unsigned DEFAULT NULL COMMENT '总排行',
+  `score` bigint(20) unsigned DEFAULT NULL COMMENT '钻石',
+  `avatar_thumb` varchar(255) NOT NULL DEFAULT '' COMMENT '头像',
+  `level` int(10) unsigned DEFAULT NULL COMMENT '等级',
+  `remark` varchar(255) DEFAULT NULL COMMENT '备注',
+  `state` enum('1','2') NOT NULL DEFAULT '1' COMMENT '状态:1=显示,2=隐藏',
+  `ranktime` int(10) unsigned DEFAULT NULL COMMENT '榜单时间',
+  `createtime` int(10) unsigned DEFAULT NULL COMMENT '创建时间',
+  `updatetime` int(10) unsigned DEFAULT NULL COMMENT '更新时间',
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 ROW_FORMAT=COMPACT COMMENT='西瓜总榜表';
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 CREATE TABLE `uct_waste_warehouse` (
   `id` int(10) unsigned NOT NULL AUTO_INCREMENT COMMENT 'ID',

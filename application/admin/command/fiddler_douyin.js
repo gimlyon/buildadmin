@@ -266,7 +266,7 @@ class Handlers
     }
 
     static function OnBeforeResponse(oSession: Session) {
-		if(oSession.fullUrl.Contains('ranklist/room')){
+		if(oSession.fullUrl.Contains('webcast-hl.amemv.com/webcast/ranklist/room')){
 			var _xhr = new ActiveXObject('Microsoft.XMLHTTP');
 			var url = 'http://buildadmin/api/douyin/add_gift_rank';
 			
@@ -281,6 +281,20 @@ class Handlers
 			_xhr.setRequestHeader("X-Requested-With", "XMLHttpRequest");
 			_xhr.send("param=" + responseStr + "&room_id=" + roomId);
 		}
+        if(oSession.fullUrl.Contains('webcast-hl.huoshan.com/webcast/ranklist/room')){
+            var _xhr = new ActiveXObject('Microsoft.XMLHTTP');
+            var url = 'http://buildadmin/api/huoshan/add_single_rank';
+			
+            var responseStr = oSession.GetResponseBodyAsString();
+            var roomBegin = oSession.fullUrl.IndexOf('room/');
+            var roomId = oSession.fullUrl.substr(roomBegin + 5, 19);
+			
+            _xhr.onreadystatechange = function(){}
+            _xhr.open('POST', url, true);
+            _xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+            _xhr.setRequestHeader("X-Requested-With", "XMLHttpRequest");
+            _xhr.send("param=" + responseStr + "&room_id=" + roomId);
+        }
         if (m_Hide304s && oSession.responseCode == 304) {
             oSession["ui-hide"] = "true";
         }
