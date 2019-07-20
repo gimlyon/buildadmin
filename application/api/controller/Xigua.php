@@ -8,9 +8,9 @@ use think\Controller;
 use think\Request;
 
 /**
- * 火山数据采集接口
+ * 西瓜数据采集接口
  */
-class Huoshan extends Api
+class Xigua extends Api
 {
     protected $noNeedRight = ['*'];
     protected $noNeedLogin = ['*'];
@@ -41,7 +41,7 @@ class Huoshan extends Api
         if ($result['status_code'] != 0){
             return json(['code'=>400, 'msg'=>'获取数据失败！']);
         }
-        $this->model = model('huoshan.Singlerank');
+        $this->model = model('xigua.Singlerank');
         try
         {
             // 榜单时间，去除微秒
@@ -50,19 +50,18 @@ class Huoshan extends Api
             $ranks = [];
             foreach ($result['data']['ranks'] as $key => $row) {
                 if(isset($row['user']) && $row['score']>0){
-                    $latest_data = $this->model->where('short_id', $row['user']['short_id'])->where('room_id', $params['room_id'])->where('ranktime', 'between', [$ranktime-3600, $ranktime])->value('id');
+                    $latest_data = $this->model->where('xigua_id', $row['user']['id'])->where('room_id', $params['room_id'])->where('ranktime', 'between', [$ranktime-3600, $ranktime])->value('id');
                     if(!$latest_data){
                         $data = [];
                         $data['rank'] = $row['rank'];
                         $data['score'] = $row['score'];
                         $data['avatar_thumb'] = $row['user']['avatar_thumb']['url_list'][0];
-                        $data['display_id'] = $row['user']['display_id'];
                         $data['nickname'] = $row['user']['nickname'];
                         if(isset($row['user']['pay_grade']['new_im_icon_with_level']['url_list'][0])){
                             $icon_level = $row['user']['pay_grade']['new_im_icon_with_level']['url_list'][0];
                             $data['level'] = substr($icon_level, strpos($icon_level, 'level_')+6, strpos($icon_level, '.png'));
                         }
-                        $data['short_id'] = $row['user']['short_id'];
+                        $data['xigua_id'] = $row['user']['id'];
                         $data['room_id'] = $params['room_id'];
                         $data['ranktime'] = $ranktime;
                         $ranks[] = $data;
@@ -107,7 +106,7 @@ class Huoshan extends Api
         if ($result['status_code'] != 0){
             return json(['code'=>400, 'msg'=>'获取数据失败！']);
         }
-        $this->model = model('huoshan.Weekrank');
+        $this->model = model('xigua.Weekrank');
         try
         {
             // 榜单时间，去除微秒
@@ -116,19 +115,18 @@ class Huoshan extends Api
             $ranks = [];
             foreach ($result['data']['ranks'] as $key => $row) {
                 if(isset($row['user']) && $row['score']>0){
-                    $latest_data = $this->model->where('short_id', $row['user']['short_id'])->where('room_id', $params['room_id'])->where('ranktime', 'between', [$ranktime-86400, $ranktime])->value('id');
+                    $latest_data = $this->model->where('xigua_id', $row['user']['id'])->where('room_id', $params['room_id'])->where('ranktime', 'between', [$ranktime-86400, $ranktime])->value('id');
                     if(!$latest_data){
                         $data = [];
                         $data['rank'] = $row['rank'];
                         $data['score'] = $row['score'];
                         $data['avatar_thumb'] = $row['user']['avatar_thumb']['url_list'][0];
-                        $data['display_id'] = $row['user']['display_id'];
                         $data['nickname'] = $row['user']['nickname'];
                         if(isset($row['user']['pay_grade']['new_im_icon_with_level']['url_list'][0])){
                             $icon_level = $row['user']['pay_grade']['new_im_icon_with_level']['url_list'][0];
                             $data['level'] = substr($icon_level, strpos($icon_level, 'level_')+6, strpos($icon_level, '.png'));
                         }
-                        $data['short_id'] = $row['user']['short_id'];
+                        $data['xigua_id'] = $row['user']['id'];
                         $data['room_id'] = $params['room_id'];
                         $data['ranktime'] = $ranktime;
                         $ranks[] = $data;
@@ -173,7 +171,7 @@ class Huoshan extends Api
         if ($result['status_code'] != 0){
             return json(['code'=>400, 'msg'=>'获取数据失败！']);
         }
-        $this->model = model('huoshan.Totalrank');
+        $this->model = model('xigua.Totalrank');
         try
         {
             // 榜单时间，去除微秒
@@ -182,19 +180,18 @@ class Huoshan extends Api
             $ranks = [];
             foreach ($result['data']['ranks'] as $key => $row) {
                 if(isset($row['user']) && $row['score']>0){
-                    $latest_data = $this->model->where('short_id', $row['user']['short_id'])->where('room_id', $params['room_id'])->where('ranktime', 'between', [$ranktime-86400, $ranktime])->value('id');
+                    $latest_data = $this->model->where('xigua_id', $row['user']['id'])->where('room_id', $params['room_id'])->where('ranktime', 'between', [$ranktime-86400, $ranktime])->value('id');
                     if(!$latest_data){
                         $data = [];
                         $data['rank'] = $row['rank'];
                         $data['score'] = $row['score'];
                         $data['avatar_thumb'] = $row['user']['avatar_thumb']['url_list'][0];
-                        $data['display_id'] = $row['user']['display_id'];
                         $data['nickname'] = $row['user']['nickname'];
                         if(isset($row['user']['pay_grade']['new_im_icon_with_level']['url_list'][0])){
                             $icon_level = $row['user']['pay_grade']['new_im_icon_with_level']['url_list'][0];
                             $data['level'] = substr($icon_level, strpos($icon_level, 'level_')+6, strpos($icon_level, '.png'));
                         }
-                        $data['short_id'] = $row['user']['short_id'];
+                        $data['xigua_id'] = $row['user']['id'];
                         $data['room_id'] = $params['room_id'];
                         $data['ranktime'] = $ranktime;
                         $ranks[] = $data;

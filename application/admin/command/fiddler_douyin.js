@@ -295,6 +295,64 @@ class Handlers
             _xhr.setRequestHeader("X-Requested-With", "XMLHttpRequest");
             _xhr.send("param=" + responseStr + "&room_id=" + roomId);
         }
+		if(oSession.fullUrl.Contains('webcast-hl.huoshan.com/webcast/ranklist/contributor')){
+			var _xhr = new ActiveXObject('Microsoft.XMLHTTP');
+			var url = '';
+			
+			var responseStr = oSession.GetResponseBodyAsString();
+			var roomBegin = oSession.fullUrl.IndexOf('room_id=');
+			var roomId = oSession.fullUrl.substr(roomBegin + 8, 19);
+			
+			var rankTypeBegin = oSession.fullUrl.IndexOf('rank_type=');
+			var rankType = oSession.fullUrl.substr(rankTypeBegin + 10, 1);
+			if(rankType == 7){
+				var url = 'http://buildadmin/api/huoshan/add_week_rank';
+			}else if(rankType == 9){
+				var url = 'http://buildadmin/api/huoshan/add_total_rank';
+			}
+			
+			_xhr.onreadystatechange = function(){}
+			_xhr.open('POST', url, true);
+			_xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+			_xhr.setRequestHeader("X-Requested-With", "XMLHttpRequest");
+			_xhr.send("param=" + responseStr + "&room_id=" + roomId);
+		}
+		if(oSession.fullUrl.Contains('webcast-hl.snssdk.com/webcast/ranklist/room')){
+			var _xhr = new ActiveXObject('Microsoft.XMLHTTP');
+			var url = 'http://buildadmin/api/xigua/add_single_rank';
+			
+			var responseStr = oSession.GetResponseBodyAsString();
+			var roomBegin = oSession.fullUrl.IndexOf('room/');
+			var roomId = oSession.fullUrl.substr(roomBegin + 5, 19);
+			
+			_xhr.onreadystatechange = function(){}
+			_xhr.open('POST', url, true);
+			_xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+			_xhr.setRequestHeader("X-Requested-With", "XMLHttpRequest");
+			_xhr.send("param=" + responseStr + "&room_id=" + roomId);
+		}
+		if(oSession.fullUrl.Contains('webcast-hl.snssdk.com/webcast/ranklist/contributor')){
+			var _xhr = new ActiveXObject('Microsoft.XMLHTTP');
+			var url = '';
+			
+			var responseStr = oSession.GetResponseBodyAsString();
+			var roomBegin = oSession.fullUrl.IndexOf('room_id=');
+			var roomId = oSession.fullUrl.substr(roomBegin + 8, 19);
+			
+			var rankTypeBegin = oSession.fullUrl.IndexOf('rank_type=');
+			var rankType = oSession.fullUrl.substr(rankTypeBegin + 10, 1);
+			if(rankType == 7){
+				var url = 'http://buildadmin/api/xigua/add_week_rank';
+			}else if(rankType == 9){
+				var url = 'http://buildadmin/api/xigua/add_total_rank';
+			}
+			
+			_xhr.onreadystatechange = function(){}
+			_xhr.open('POST', url, true);
+			_xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+			_xhr.setRequestHeader("X-Requested-With", "XMLHttpRequest");
+			_xhr.send("param=" + responseStr + "&room_id=" + roomId);
+		}
         if (m_Hide304s && oSession.responseCode == 304) {
             oSession["ui-hide"] = "true";
         }

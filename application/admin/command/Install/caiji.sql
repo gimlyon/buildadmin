@@ -72,6 +72,7 @@ CREATE TABLE `ba_huoshan_total_rank` (
 
 CREATE TABLE `ba_xigua_single_rank` (
   `id` int(10) unsigned NOT NULL AUTO_INCREMENT COMMENT 'ID',
+  `xigua_id` bigint(30) unsigned DEFAULT NULL COMMENT '西瓜ID',
   `room_id` bigint(30) unsigned DEFAULT NULL COMMENT '直播间ID',
   `nickname` varchar(100) DEFAULT NULL COMMENT '昵称',
   `rank` int(10) unsigned DEFAULT NULL COMMENT '本场排行',
@@ -88,6 +89,7 @@ CREATE TABLE `ba_xigua_single_rank` (
 
 CREATE TABLE `ba_xigua_week_rank` (
   `id` int(10) unsigned NOT NULL AUTO_INCREMENT COMMENT 'ID',
+  `xigua_id` bigint(30) unsigned DEFAULT NULL COMMENT '西瓜ID',
   `room_id` bigint(30) unsigned DEFAULT NULL COMMENT '直播间ID',
   `nickname` varchar(100) DEFAULT NULL COMMENT '昵称',
   `rank` int(10) unsigned DEFAULT NULL COMMENT '周排行',
@@ -104,6 +106,7 @@ CREATE TABLE `ba_xigua_week_rank` (
 
 CREATE TABLE `ba_xigua_total_rank` (
   `id` int(10) unsigned NOT NULL AUTO_INCREMENT COMMENT 'ID',
+  `xigua_id` bigint(30) unsigned DEFAULT NULL COMMENT '西瓜ID',
   `room_id` bigint(30) unsigned DEFAULT NULL COMMENT '直播间ID',
   `nickname` varchar(100) DEFAULT NULL COMMENT '昵称',
   `rank` int(10) unsigned DEFAULT NULL COMMENT '总排行',
