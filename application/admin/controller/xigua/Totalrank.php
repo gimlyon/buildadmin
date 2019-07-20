@@ -18,6 +18,8 @@ class Totalrank extends Backend
      */
     protected $model = null;
 
+    protected $searchFields = 'xigua_id,room_id,nickname';
+
     public function _initialize()
     {
         parent::_initialize();
