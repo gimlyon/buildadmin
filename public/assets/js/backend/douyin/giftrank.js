@@ -34,10 +34,10 @@ define(['jquery', 'bootstrap', 'backend', 'table', 'form'], function ($, undefin
                         {field: 'nickname', title: __('Nickname'), sortable:true},
                         {field: 'rank', title: __('Rank'), sortable:true},
                         {field: 'score', title: __('Score'), sortable:true},
-                        {field: 'avatar_thumb', title: __('Avatar_thumb'), formatter: function (value, row, index) {
-                            return '<a href="' + value + '" target="_blank"><img src="' + value + '" height="30" /></a>';
-                        }},
-                        {field: 'icon_level', title: __('Icon_level'), formatter: Table.api.formatter.image, sortable:true},
+                        // {field: 'avatar_thumb', title: __('Avatar_thumb'), formatter: function (value, row, index) {
+                        //     return '<a href="' + value + '" target="_blank"><img src="' + value + '" height="30" /></a>';
+                        // }},
+                        // {field: 'icon_level', title: __('Icon_level'), formatter: Table.api.formatter.image, sortable:true},
                         {field: 'remark', title: __('Remark')},
                         {field: 'state', title: __('State'), searchList: {"1":__('State 1'),"2":__('State 2')}, formatter: Table.api.formatter.normal, sortable:true},
                         {field: 'ranktime', title: __('Ranktime'), operate:'RANGE', addclass:'datetimerange', formatter: Table.api.formatter.datetime, sortable:true},
@@ -49,6 +49,7 @@ define(['jquery', 'bootstrap', 'backend', 'table', 'form'], function ($, undefin
                 //普通搜索
                 commonSearch: false,
                 showToggle: false,
+                showExport: false,
                 // showColumns: false,
                 pageList: [15, 50, 100, 'All'],
                 pageSize: 15,
