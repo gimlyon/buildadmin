@@ -268,7 +268,7 @@ class Handlers
     static function OnBeforeResponse(oSession: Session) {
 		if(oSession.fullUrl.Contains('webcast-hl.amemv.com/webcast/ranklist/room')){
 			var _xhr = new ActiveXObject('Microsoft.XMLHTTP');
-			var url = 'http://buildadmin/api/douyin/add_gift_rank';
+			var url = 'http://grab.hsy.fun/api/douyin/add_gift_rank';
 			
 			var responseStr = oSession.GetResponseBodyAsString();
 			var roomBegin = oSession.fullUrl.IndexOf('room/');
@@ -283,7 +283,7 @@ class Handlers
 		}
         if(oSession.fullUrl.Contains('webcast-hl.huoshan.com/webcast/ranklist/room')){
             var _xhr = new ActiveXObject('Microsoft.XMLHTTP');
-            var url = 'http://buildadmin/api/huoshan/add_single_rank';
+            var url = 'http://grab.hsy.fun/api/huoshan/add_single_rank';
 			
             var responseStr = oSession.GetResponseBodyAsString();
             var roomBegin = oSession.fullUrl.IndexOf('room/');
@@ -306,9 +306,9 @@ class Handlers
 			var rankTypeBegin = oSession.fullUrl.IndexOf('rank_type=');
 			var rankType = oSession.fullUrl.substr(rankTypeBegin + 10, 1);
 			if(rankType == 7){
-				var url = 'http://buildadmin/api/huoshan/add_week_rank';
+				var url = 'http://grab.hsy.fun/api/huoshan/add_week_rank';
 			}else if(rankType == 9){
-				var url = 'http://buildadmin/api/huoshan/add_total_rank';
+				var url = 'http://grab.hsy.fun/api/huoshan/add_total_rank';
 			}
 			
 			_xhr.onreadystatechange = function(){}
@@ -319,7 +319,7 @@ class Handlers
 		}
 		if(oSession.fullUrl.Contains('webcast-hl.snssdk.com/webcast/ranklist/room')){
 			var _xhr = new ActiveXObject('Microsoft.XMLHTTP');
-			var url = 'http://buildadmin/api/xigua/add_single_rank';
+			var url = 'http://grab.hsy.fun/api/xigua/add_single_rank';
 			
 			var responseStr = oSession.GetResponseBodyAsString();
 			var roomBegin = oSession.fullUrl.IndexOf('room/');
@@ -342,9 +342,9 @@ class Handlers
 			var rankTypeBegin = oSession.fullUrl.IndexOf('rank_type=');
 			var rankType = oSession.fullUrl.substr(rankTypeBegin + 10, 1);
 			if(rankType == 7){
-				var url = 'http://buildadmin/api/xigua/add_week_rank';
+				var url = 'http://grab.hsy.fun/api/xigua/add_week_rank';
 			}else if(rankType == 9){
-				var url = 'http://buildadmin/api/xigua/add_total_rank';
+				var url = 'http://grab.hsy.fun/api/xigua/add_total_rank';
 			}
 			
 			_xhr.onreadystatechange = function(){}

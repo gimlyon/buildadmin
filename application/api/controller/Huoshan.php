@@ -60,7 +60,9 @@ class Huoshan extends Api
                         $data['nickname'] = $row['user']['nickname'];
                         if(isset($row['user']['pay_grade']['new_im_icon_with_level']['url_list'][0])){
                             $icon_level = $row['user']['pay_grade']['new_im_icon_with_level']['url_list'][0];
-                            $data['level'] = substr($icon_level, strpos($icon_level, 'level_')+6, strpos($icon_level, '.png'));
+                            $begin = strpos($icon_level, 'level_')+6;
+                            $length = strpos($icon_level, '.png') - $begin;
+                            $data['level'] = substr($icon_level, $begin, $length);
                         }
                         $data['short_id'] = $row['user']['short_id'];
                         $data['room_id'] = $params['room_id'];
@@ -126,7 +128,9 @@ class Huoshan extends Api
                         $data['nickname'] = $row['user']['nickname'];
                         if(isset($row['user']['pay_grade']['new_im_icon_with_level']['url_list'][0])){
                             $icon_level = $row['user']['pay_grade']['new_im_icon_with_level']['url_list'][0];
-                            $data['level'] = substr($icon_level, strpos($icon_level, 'level_')+6, strpos($icon_level, '.png'));
+                            $begin = strpos($icon_level, 'level_')+6;
+                            $length = strpos($icon_level, '.png') - $begin;
+                            $data['level'] = substr($icon_level, $begin, $length);
                         }
                         $data['short_id'] = $row['user']['short_id'];
                         $data['room_id'] = $params['room_id'];
@@ -192,7 +196,9 @@ class Huoshan extends Api
                         $data['nickname'] = $row['user']['nickname'];
                         if(isset($row['user']['pay_grade']['new_im_icon_with_level']['url_list'][0])){
                             $icon_level = $row['user']['pay_grade']['new_im_icon_with_level']['url_list'][0];
-                            $data['level'] = substr($icon_level, strpos($icon_level, 'level_')+6, strpos($icon_level, '.png'));
+                            $begin = strpos($icon_level, 'level_')+6;
+                            $length = strpos($icon_level, '.png') - $begin;
+                            $data['level'] = substr($icon_level, $begin, $length);
                         }
                         $data['short_id'] = $row['user']['short_id'];
                         $data['room_id'] = $params['room_id'];

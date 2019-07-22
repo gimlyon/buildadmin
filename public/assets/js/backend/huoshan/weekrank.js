@@ -50,6 +50,7 @@ define(['jquery', 'bootstrap', 'backend', 'table', 'form'], function ($, undefin
                 //普通搜索
                 commonSearch: false,
                 showToggle: false,
+                showExport: false,
                 // showColumns: false,
                 pageList: [15, 30, 50, 100],
                 pageSize: 15,
