@@ -15,6 +15,7 @@ define(['jquery', 'bootstrap', 'backend', 'table', 'form'], function ($, undefin
                     del_url: 'xigua/totalrank/del',
                     multi_url: 'xigua/totalrank/multi',
                     table: 'xigua_total_rank',
+                    export_url: 'totalrank/export',
                 }
             });
 
@@ -49,14 +50,14 @@ define(['jquery', 'bootstrap', 'backend', 'table', 'form'], function ($, undefin
                 commonSearch: false,
                 showToggle: false,
                 // showColumns: false,
-                pageList: [15, 50, 100, 'All'],
+                pageList: [15, 30, 50, 100],
                 pageSize: 15,
                 queryParams: function(){
                     var params = {};
                     var options = $('#table').bootstrapTable('getOptions');
 
                     params['limit'] = options.pageSize? options.pageSize: 15;
-                    params['offset'] = !isNaN(options.pageSize) && options.pageNumber? (options.pageNumber-1) * options.pageSize: 0;
+                    params['offset'] = options.pageNumber? (options.pageNumber-1) * options.pageSize: 0;
                     params['search'] = options.searchText? options.searchText: '';
                     params['sort'] = options.sortName? options.sortName: 'createtime';
                     params['order'] = options.sortOrder? options.sortOrder: 'desc';
@@ -65,7 +66,6 @@ define(['jquery', 'bootstrap', 'backend', 'table', 'form'], function ($, undefin
                     params['end_time'] = $("#end_time").val();
                     return params;
                 },
-                exportTypes: ['excel'],
                 undefinedText: '',
             });
 
@@ -75,6 +75,17 @@ define(['jquery', 'bootstrap', 'backend', 'table', 'form'], function ($, undefin
             Controller.api.bindevent();
             // 修改搜索框提示文字
             $('.search input').attr('placeholder', '西瓜ID/直播间ID/昵称');
+            // 导出
+            $('.btn-export').click(function () {
+                var options = $('#table').bootstrapTable('getOptions');
+                window.location.href = $.fn.bootstrapTable.defaults.extend.export_url
+                    + '?search=' + (options.searchText? options.searchText: '')
+                    + '&sort=' + (options.sortName? options.sortName: 'createtime')
+                    + '&order=' + (options.sortOrder? options.sortOrder: 'desc')
+                    + '&state=' + $("#state").val()
+                    + '&begin_time=' + $("#begin_time").val()
+                    + '&end_time=' + $("#end_time").val();
+            });
         },
         add: function () {
             Controller.api.bindevent();

@@ -8,6 +8,7 @@
                     <div id="toolbar" class="toolbar">
                         <a href="javascript:;" class="btn btn-primary btn-refresh" title="{:__('Refresh')}" ><i class="fa fa-refresh"></i> </a>
                         <a href="javascript:;" class="btn btn-danger btn-del btn-disabled disabled {:$auth->check('douyin/giftrank/del')?'':'hide'}" title="{:__('Delete')}" ><i class="fa fa-trash"></i> {:__('Delete')}</a>
+                        <a href="javascript:;" class="btn btn-default btn-export {:$auth->check('douyin/giftrank/export')?'':'hide'}" title="导出" ><i class="fa fa-external-link"></i> 导出</a>
                         &nbsp;|&nbsp;
                         <form role="form" style="display: inline">
                         <div style="min-width: 100px;display: inline-block;">
