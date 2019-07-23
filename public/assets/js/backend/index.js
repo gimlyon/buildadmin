@@ -290,7 +290,7 @@ define(['jquery', 'bootstrap', 'backend', 'addtabs', 'adminlte', 'form'], functi
                 if (Config.fastadmin.multiplenav) {
                     $("li:first > a", firstnav).trigger("click");
                 } else {
-                    $("ul.sidebar-menu li a[url!='javascript:;']:first").trigger("click");
+                    // $("ul.sidebar-menu li a[url!='javascript:;']:first").trigger("click");
                 }
             }
 
