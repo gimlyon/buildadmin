@@ -11,6 +11,7 @@ define(['jquery', 'bootstrap', 'backend', 'table', 'form'], function ($, undefin
                     del_url: 'douyin/giftrank/del',
                     multi_url: 'douyin/giftrank/multi',
                     table: 'douyin_gift_rank',
+                    export_url: 'giftrank/export',
                 }
             });
 
@@ -55,14 +56,13 @@ define(['jquery', 'bootstrap', 'backend', 'table', 'form'], function ($, undefin
             
             // 导出
             $('.btn-export').click(function () {
-                var options = $('#table').bootstrapTable('getOptions');
-                window.location.href = 'giftrank/export'
-                    + '?search=' + (options.searchText? options.searchText: '')
-                    + '&sort=' + (options.sortName? options.sortName: 'createtime')
-                    + '&order=' + (options.sortOrder? options.sortOrder: 'desc')
-                    + '&state=' + $("#state").val()
-                    + '&begin_time=' + $("#begin_time").val()
-                    + '&end_time=' + $("#end_time").val();
+                table.bootstrapTable('refresh', {
+                    url: $.fn.bootstrapTable.defaults.extend.export_url
+                });
+                $('.fa-spin').removeClass("fa-spin");
+                table.bootstrapTable('refresh', {
+                    url: $.fn.bootstrapTable.defaults.extend.index_url
+                });
             });
         },
         add: function () {
