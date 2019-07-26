@@ -1,7 +1,7 @@
 <?php
 
 return array (
-  'name' => 'buildadmin',
+  'name' => '铝业',
   'beian' => '',
   'cdnurl' => '',
   'version' => '1.0.1',
