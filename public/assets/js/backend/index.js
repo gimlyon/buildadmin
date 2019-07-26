@@ -289,8 +289,8 @@ define(['jquery', 'bootstrap', 'backend', 'addtabs', 'adminlte', 'form'], functi
             } else {
                 if (Config.fastadmin.multiplenav) {
                     $("li:first > a", firstnav).trigger("click");
-                } else {
-                    // $("ul.sidebar-menu li a[url!='javascript:;']:first").trigger("click");
+                } else if(!Config.referer){
+                    $("ul.sidebar-menu li a[url!='javascript:;']:first").trigger("click");
                 }
             }
 
