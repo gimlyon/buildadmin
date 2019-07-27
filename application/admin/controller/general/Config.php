@@ -156,7 +156,7 @@ class Config extends Backend
     /**
      * 刷新配置文件
      */
-    protected function refreshFile()
+    public function refreshFile()
     {
         $config = [];
         foreach ($this->model->all() as $k => $v) {

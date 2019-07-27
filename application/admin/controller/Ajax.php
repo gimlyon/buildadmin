@@ -211,6 +211,7 @@ class Ajax extends Backend
         $type = $this->request->request("type");
         switch ($type) {
             case 'all':
+                action('admin/general/config/refreshFile');
             case 'content':
                 rmdirs(CACHE_PATH, false);
                 Cache::clear();
