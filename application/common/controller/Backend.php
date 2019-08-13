@@ -353,7 +353,7 @@ class Backend extends Controller
                         $sym = $sym == 'RANGE' ? '>=' : '<';
                         $arr = $arr[0];
                     }
-                    $where[] = [$k, str_replace('RANGE', 'BETWEEN', $sym), $arr];
+                    $where[] = [$k, str_replace('RANGE', 'BETWEEN', $sym) . ' time', $arr];
                     break;
                 case 'LIKE':
                 case 'LIKE %...%':
