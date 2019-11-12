@@ -15,6 +15,7 @@ return array (
     'config_init' => 
     array (
       0 => 'geetest',
+      1 => 'nkeditor',
     ),
     'admin_login_init' => 
     array (

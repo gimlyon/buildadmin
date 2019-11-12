@@ -53,7 +53,7 @@ return array(
         'type'    => 'string',
         'content' =>
             array(),
-        'value'   => '1',
+        'value'   => '0.1',
         'rule'    => 'required',
         'msg'     => '',
         'tip'     => '最低的充值金额',
@@ -117,7 +117,7 @@ return array(
                 '1' => '限制',
                 '0' => '不限制',
             ),
-        'value'   => '1',
+        'value'   => '0',
         'rule'    => 'required',
         'msg'     => '',
         'tip'     => '是否限制未支付相同金额的订单在30分钟内只生成一次',

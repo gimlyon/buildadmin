@@ -105,6 +105,8 @@ class Order extends Model
                 //写入日志
                 MoneyLog::create(['user_id' => $order->user_id, 'money' => $order->amount, 'before' => $before, 'after' => $after, 'memo' => '充值']);
             }
+
+            $result = \think\Hook::listen('recharge_order_settled', $order);
         }
         return true;
     }

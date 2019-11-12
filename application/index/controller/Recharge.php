@@ -7,7 +7,7 @@ use app\common\controller\Frontend;
 use think\Exception;
 
 /**
- *
+ * 充值
  */
 class Recharge extends Frontend
 {
